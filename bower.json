@@ -1,0 +1,22 @@
+{
+  "name": "web1",
+  "description": "Listar libros desde JSON. frontend y backend",
+  "main": "index.js",
+  "authors": [
+    "matias perez"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
+}

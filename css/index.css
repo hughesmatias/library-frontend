@@ -1,0 +1,13 @@
+#books-list li{
+	list-style: none;
+}
+
+#books-list li a{
+	color: grey;
+}
+#books-list li a:hover{
+	color:green;
+}
+#books-list li a:active{
+	color:black;
+}
