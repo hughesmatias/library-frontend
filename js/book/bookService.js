@@ -18,9 +18,7 @@ var bookService = (function () {
     return {
  
       getBooksList: function(callback) {
-        getBooks(url+"/books",function(books){
-          callback(books);
-        });
+        getBooks(url+"/books",callback);
       },
       getBook: function(id,callback) {
         $.get( url +"/books/"+ id,function (data) {
@@ -28,9 +26,7 @@ var bookService = (function () {
         })
       },
       createBook: function(bookObj,callback){
-        $.post(url+"/books",bookObj, function (data){
-          callback(data);
-        });
+        $.post(url+"/books",bookObj,callback);
       },
       editBook: function(id,bookObj,callback){
         $.put(url + "/books/" + id, bookObj , callback)

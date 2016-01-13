@@ -1,5 +1,5 @@
 (function(module){
-	function convertirMilisegundos (count, unit, mode) {
+	function convertTime (count, unit, mode) {
 	   if (arguments.length != 3) {
 	      return false
 	   }
@@ -18,11 +18,11 @@
 	   
 	}
 
-	function cantDiasACreacion(creationDate){
+	function amountDayToCreated(creationDate){
 		var now = new Date();
 
 		var milisecInter = now.getTime() - creationDate.getTime();
-		var inDays = convertirMilisegundos(milisecInter, "di", "mu");
+		var inDays = convertTime(milisecInter, "di", "mu");
 
 		return Math.trunc(inDays);
 	}
@@ -30,7 +30,7 @@
 	function printBook(jsonBook){
 		$("#book-title").text(jsonBook.title);
 		var date2 = new Date(jsonBook.creationDate);
-		var cantDias = cantDiasACreacion(date2);
+		var cantDias = amountDayToCreated(date2);
 
 		$("#book-date-publication").text(date2.getFullYear() +" Dias: "+ cantDias);
 		$("#book-description").text(jsonBook.description);
@@ -50,6 +50,12 @@
 	    })
 	};
 
+	module.showContainClean = function(){
+		$(".starter-template").removeClass("hidden");
+		$(".wrapper").addClass("hidden");
+		$(".info-book").empty();
+	}
+
 	module.cleanBookForm = function(){
 		$("#description").val("");
 		$("#pagesAmount").val("");
@@ -57,32 +63,36 @@
 		$("#title").val("");
 	};
 
+	module.objBook = function(){
+		return bookObj = {
+			title: $("#title").val(),
+			author: $("#author").val(),
+			description: $("#description").val(),
+		    pagesAmount: $("#pagesAmount").val(),
+		}
+	}
+
+	module.showSuccessfulSubmit= function(text){
+		$(".info-book").removeClass("hidden");
+		$(".info-book").append("<h1> Fue "+ text + " con Exito el Libro. </h1>");
+	}
+
 	module.create=function(){
 		$("#form-book").submit(function (event){
 			event.preventDefault();
-			var bookObj = {
-				title: $("#title").val(),
-				author: $("#author").val(),
-				description: $("#description").val(),
-			    pagesAmount: $("#pagesAmount").val(),
-			    creationDate: new Date
-			}
+			var bookObj = module.objBook();
+			bookObj["creationDate"] = new Date;
 
 			booksService.createBook(bookObj,function(data){
-				$(".starter-template").removeClass("hidden");
-				$(".wrapper").addClass("hidden");
-				$(".info-book").removeClass("hidden");
-				$(".info-book").empty();
-				$(".info-book").append("<h1> Fue Agregado con Exito el Libro. </h1>");
+				module.showContainClean();
+				module.showSuccessfulSubmit("Agregado");
 				module.cleanBookForm();
 			});
 		})
 	};
 	module.edit = function (id){
-		$(".starter-template").removeClass("hidden");
-		$(".wrapper").addClass("hidden");
+		module.showContainClean();
 		$("#create-book").removeClass("hidden");
-		$(".info-book").empty();
 		booksService.getBook(id,function (bookObj){
 			$("#title").val(bookObj.title);
 			$("#author").val(bookObj.author);
@@ -92,18 +102,11 @@
 			$("#create-book #button-submit").text("Editar Libro");
 			$("#form-book").submit(function (event){
 				event.preventDefault();
-				var bookObj = {
-					title: $("#title").val(),
-					author: $("#author").val(),
-					description: $("#description").val(),
-			    	pagesAmount: $("#pagesAmount").val()
-				}
+				var bookObj = module.objBook();
+
 				booksService.editBook(id,bookObj,function(data){
-					$(".starter-template").removeClass("hidden");
-					$(".wrapper").addClass("hidden");
-					$(".info-book").removeClass("hidden");
-					$(".info-book").empty();
-					$(".info-book").append("<h1> Fue Editado con Exito el Libro. </h1>");
+					module.showContainClean();
+					module.showSuccessfulSubmit("Editado");
 					module.cleanBookForm();
 				})
 			})
