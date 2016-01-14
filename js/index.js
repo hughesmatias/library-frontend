@@ -10,13 +10,18 @@ $(document).ready(function(){
 	$("#link-create-book").on("click",function(){
 		books.showContainClean();
 		$("#create-book").removeClass("hidden");
-		$("#create-book h1").text("Formulario Alta Libro");
-		$("#create-book #button-submit").text("Agregar Libro");
 		books.cleanBookForm();
 		books.create();
 	});
 	$("#link-list-authors").on("click",function(){
+		authors.showContainClean();
+		$('#authors').removeClass("hidden");
+		authors.list();
+	})
+	$("#link-create-author").on("click",function(){
 		books.showContainClean();
-		console.log("aca va la seccion autor");
+		$("#create-author").removeClass("hidden");
+		authors.cleanAuthorForm();
+		authors.create();
 	})
 });

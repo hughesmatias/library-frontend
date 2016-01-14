@@ -1,50 +1,17 @@
 (function(module){
-	function convertTime (count, unit, mode) {
-	   if (arguments.length != 3) {
-	      return false
-	   }
-	   var value;
-	   switch (unit) {
-	      case "se": value = 1000; break;
-	      case "mi": value = 60000; break;
-	      case "ho": value = 3600000; break;
-	      case "di": value = 86400000; break;
-	      case "an": value = 31536000000; break;
-	   }
-	   switch (mode) {
-	      case "mu": return count/value; break;
-	      case "um": return count*value; break;
-	   }
-	   
-	}
 
-	function amountDayToCreated(creationDate){
-		var now = new Date();
-
-		var milisecInter = now.getTime() - creationDate.getTime();
-		var inDays = convertTime(milisecInter, "di", "mu");
-
-		return Math.trunc(inDays);
-	}
-
-	function printBook(jsonBook){
-		$("#book-title").text(jsonBook.title);
-		var date2 = new Date(jsonBook.creationDate);
-		var cantDias = amountDayToCreated(date2);
-
-		$("#book-date-publication").text(date2.getFullYear() +" Dias: "+ cantDias);
-		$("#book-description").text(jsonBook.description);
-		$("#book-pages-amount").text("Cantidad de paginas: "+ jsonBook.pagesAmount);
-	};
+	var table = $("#books-table");
 
 	module.delete = function(id){
-		
 	    booksService.getBook(id,function (obj){
-	    	$(".modal-body p").text("¿Desea Eliminar el libro "+ obj.title + " ?");
-	    	$("#delete-book-botom").on("click",function(){		
+	    	var deleteModal = $("#delete-modal-book");
+	    	deleteModal.modal('show');
+	    	deleteModal.find(".modal-body p").text("¿Desea Eliminar el libro "+ obj.title + " ?");
+	    	deleteModal.find("#delete-book-botom").on("click",function(){		
 	    		booksService.deleteBook(id,function(){
-		    		$("#deleteModal").modal('hide');
+		    		deleteModal.modal('hide');
 		    		module.list();
+		    		//table.find("#book-row-"+id).remove();
 	    		});
 	    	})
 	    })
@@ -53,7 +20,7 @@
 	module.showContainClean = function(){
 		$(".starter-template").removeClass("hidden");
 		$(".wrapper").addClass("hidden");
-		$(".info-book").empty();
+		$(".info").empty();
 	}
 
 	module.cleanBookForm = function(){
@@ -73,8 +40,8 @@
 	}
 
 	module.showSuccessfulSubmit= function(text){
-		$(".info-book").removeClass("hidden");
-		$(".info-book").append("<h1> Fue "+ text + " con Exito el Libro. </h1>");
+		$(".info").removeClass("hidden");
+		$(".info").append("<h1> Fue "+ text + " con Exito el Libro. </h1>");
 	}
 
 	module.create=function(){
@@ -95,7 +62,7 @@
 		$("#create-book").removeClass("hidden");
 		booksService.getBook(id,function (bookObj){
 			$("#title").val(bookObj.title);
-			$("#author").val(bookObj.author);
+			$("#author").val(bookObj.authorId);
 			$("#description").val(bookObj.description);
 			$("#pagesAmount").val(bookObj.pagesAmount);
 			$("#create-book h1").text("Formulario de Modificacion de Libro");
@@ -119,28 +86,26 @@
 
 	module.list  = function (){
 		booksService.getBooksList(function(books){
-			var list = $("#books-list");
-			var counter = $(".books-counter");
-			list.empty();
-			counter.text("Cantidad de Libros:" + books.length);
-			$.each(books, function (index, book) {
-				list.append("<li><a href='#' class='list-group-item' data-id="+ book.id +">"+ book.title + ", " + book.author +"</a><a href='#' class='edit-book' data-id=" + book.id + ">Editar</a> <a class='delete-book' href='#' data-id=" + book.id + " class='btn btn-info btn-lg' data-toggle='modal' data-target='#deleteModal' > Quitar </a></li>");
-			});
+			$("#books-counter").text("Cantidad de Libros: " + books.length);
+			$("#error-book").empty();
 
-			list.find("li a").each(function() {
-				var link = $(this);
-
-				link.on("click",function(){
-					var id = $(this).data("id");
-					module.get(id);
+			table.empty();
+			if(books.length == 0){
+				$("#error-book").text("No se dispone de Libros.");
+			}else{
+				$.each(books, function(index,book){
+					authors.getNameAuthorById(book.authorId,function(authorName){
+						table.append("<tr id='book-row-"+ book.id +"'><td>"+ book.title +"</td><td>"+ authorName +"</td><td>"+ book.description +"</td><td>"+ book.pagesAmount +"</td><td><a href='#' class='edit-book-" + book.id + "' data-id=" + book.id + ">Editar</a></td><td><a href='#' class='delete-book-" + book.id + "' data-id=" + book.id + ">Borrar</a> </td><tr>");
+						$(".delete-book-" + book.id).on("click",function (){
+							module.delete(book.id);
+						});
+						$(".edit-book-" + book.id).on("click",function (){
+							module.edit(book.id);
+						});
+					});
 				});
-			})
-			$(".edit-book").on("click",function (){
-				module.edit($(this).data().id);
-			});
-			$(".delete-book").on("click",function (){
-				module.delete($(this).data().id);
-			});
+
+			}
 		});
 	};
 

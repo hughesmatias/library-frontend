@@ -1,13 +1,6 @@
-#books-list li{
-	list-style: none;
-}
-
-#books-list li a{
-	color: grey;
-}
-#books-list li a:hover{
-	color:green;
-}
-#books-list li a:active{
-	color:black;
+#default-row{
+	font-style: bold;
+	font-family: "Times New Roman", Times, serif;
+	color:grey;
+	font-size: 16px
 }

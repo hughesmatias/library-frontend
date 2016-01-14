@@ -20,27 +20,39 @@
     <div class="container">
 
       <div class="starter-template hidden">
-        
+
         <div id="books" class="wrapper">
-          <div class="row">
-            <div class="col-sm-4 col-md-4">
-              <div class="btn-group-vertical" role="group" aria-label="left">
-                <span class="books-counter"></span>
-                <ul id="books-list">
-                </ul>
-              </div>
-            </div>
-            <div class="col-sm-8 col-md-8">
-              <div class="thumbnail">
-                <div class="caption">
-                  <h1 id="book-title"></h1>
-                  <spam class="pull-right"><h4 id="book-date-publication"></h4></spam>
-                  <h5 id="book-description"></h5>
-                  <h5 id="book-pages-amount"></h5>
-                </div>
-              </div>
-            </div>
-          </div>
+          <span id="books-counter"></span>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td id="default-row">Book Title</td>
+                <td id="default-row">Book Author</td>
+                <td id="default-row">Book Description</td>
+                <td id="default-row">Book Pages Amount</td>
+                <td id="default-row" style="width:5%"></td>
+                <td id="default-row" style="width:5%"></td>
+              </tr>
+            </thead>
+            <tbody id="books-table">
+              
+            </tbody>
+          </table>
+          <spam id="error-book"> </spam>
+          <a class="btn btn-default" id="link-create-book" role="button">Create Book</a>
+        </div>
+
+        <div id="authors" class="wrapper">
+          <span id="authors-counter"></span>
+          <table class="table table-hover" id="authors-table">
+            <tr>
+              <td id="default-row" style="width:75%">Author Name</td>
+              <td id="default-row"></td>
+              <td id="default-row"></td>
+            </tr>
+          </table>
+          <spam id="error-author"></spam>
+          <a class="btn btn-default" id="link-create-author" role="button">Create Author</a>
         </div>
         
         <div id="create-book" class="wrapper">
@@ -49,6 +61,9 @@
             <form id="form-book">
               <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
               <input id="author" name="author" type="text" class="form-control" placeholder="Autor" required>
+              <!-- <div id="the-basics">
+                <input class="typeahead" type="text" placeholder="States of USA">
+              </div> -->
               <label for="formGroupExampleInput">Descripcion</label>
               <textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripcion..."></textarea>
               <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
@@ -56,12 +71,22 @@
             </form>
           </div>
         </div>
-        <div id="index" class="wrapper">
+
+        <div id="create-author" class="wrapper">
+          <h1>Formulario Alta Autor</h1>
+          <div id="crearAutor">
+            <form id="form-author">
+              <input id="nameAuthor" name="nameAuthor" type="text" class="form-control" placeholder="Nombre" required>
+              <button type="submit" id="button-submit-author" class="btn btn-primary">Agregar Autor</button>
+            </form>
+          </div>
+        </div>
+        <div id="index" class="wrapper text-center">
           <h1 class="la">ABM LIBROS</h1>
           <p class="lead">Agregar, modificar y quitar libros.</p>
         </div>
-        <div class="info-book"></div>
-        <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="info"></div>
+        <div id="delete-modal-book" class="modal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -79,6 +104,23 @@
 
           </div>
         </div>
+        <div id="delete-modal-author" class="modal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Advertencia</h4>
+              </div>
+              <div class="modal-body">
+                <p></p>
+              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -91,5 +133,8 @@
     <script src="js/index.js"></script>
     <script src="js/book/bookService.js"></script>
     <script src="js/book/booksController.js"></script>
-
+    <script src="js/authors/authorsService.js"></script>
+    <script src="js/authors/authorsController.js"></script>
+    <!--<script src="js/book/the-basics.js"></script>-->
+    <script src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>
 </body>
