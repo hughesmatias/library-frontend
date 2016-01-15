@@ -50,7 +50,7 @@
 	module.delete = function(id){
 		module.getNameAuthorById(id,function(data){
 			var deleteModal = $("#delete-modal-author");
-			deleteModal.show();
+			deleteModal.modal('show');
 			deleteModal.find(".modal-body p").text("Si elimina el autor:"+ data +" se borraran todos los libros que tenga vinculados");
 			deleteModal.find("#delete-book-botom").on("click",function(){
 				authorsService.deleteAuthors(id,function(data){

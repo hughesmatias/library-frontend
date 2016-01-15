@@ -11,6 +11,8 @@ $(document).ready(function(){
 		books.showContainClean();
 		$("#create-book").removeClass("hidden");
 		books.cleanBookForm();
+		$('.editor').wysihtml5();
+		$('#some-textarea').wysihtml5();
 		books.create();
 	});
 	$("#link-list-authors").on("click",function(){

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
   <head>
     <title>ABM</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/abm1.css" rel="stylesheet">
@@ -8,121 +9,129 @@
   </head>
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-          </ul>
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-    </nav>
-
-    <div class="container">
-
-      <div class="starter-template hidden">
-
-        <div id="books" class="wrapper">
-          <span id="books-counter"></span>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <td id="default-row">Book Title</td>
-                <td id="default-row">Book Author</td>
-                <td id="default-row">Book Description</td>
-                <td id="default-row">Book Pages Amount</td>
-                <td id="default-row" style="width:5%"></td>
-                <td id="default-row" style="width:5%"></td>
-              </tr>
-            </thead>
-            <tbody id="books-table">
-              
-            </tbody>
-          </table>
-          <spam id="error-book"> </spam>
-          <a class="btn btn-default" id="link-create-book" role="button">Create Book</a>
-        </div>
-
-        <div id="authors" class="wrapper">
-          <span id="authors-counter"></span>
-          <table class="table table-hover" id="authors-table">
-            <tr>
-              <td id="default-row" style="width:75%">Author Name</td>
-              <td id="default-row"></td>
-              <td id="default-row"></td>
-            </tr>
-          </table>
-          <spam id="error-author"></spam>
-          <a class="btn btn-default" id="link-create-author" role="button">Create Author</a>
-        </div>
-        
-        <div id="create-book" class="wrapper">
-          <h1>Formulario Alta Libro</h1>
-          <div id="crearLibro">
-            <form id="form-book">
-              <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
-              <!--<input id="author" name="author" type="text" class="form-control" placeholder="Autor" required>-->
-              <div id="the-basics">
-                <input id="author" class="form-control typeahead" type="text" placeholder="Authors" required>
-              </div>
-              <textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripcion..."></textarea>
-              <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
-              <button type="submit" id="button-submit" class="btn btn-primary">Agregar Libro</button>
-            </form>
-          </div>
-        </div>
-
-        <div id="create-author" class="wrapper">
-          <h1>Formulario Alta Autor</h1>
-          <div id="crearAutor">
-            <form id="form-author">
-              <input id="nameAuthor" name="nameAuthor" type="text" class="form-control" placeholder="Nombre" required>
-              <button type="submit" id="button-submit-author" class="btn btn-primary">Agregar Autor</button>
-            </form>
-          </div>
-        </div>
-        <div id="index" class="wrapper text-center">
-          <h1 class="la">ABM LIBROS</h1>
-          <p class="lead">Agregar, modificar y quitar libros.</p>
-        </div>
-        <div class="info"></div>
-        <div id="delete-modal-book" class="modal" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Advertencia</h4>
-              </div>
-              <div class="modal-body">
-                <p></p>
-              </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
-                </div>
-            </div>
-
-          </div>
-        </div>
-        <div id="delete-modal-author" class="modal" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Advertencia</h4>
-              </div>
-              <div class="modal-body">
-                <p></p>
-              </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
-                </div>
-            </div>
-          </div>
-        </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
       </div>
-
     </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="starter-template hidden">
+
+      <div id="books" class="wrapper">
+        <span id="books-counter"></span>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td id="default-row">Book Title</td>
+              <td id="default-row">Book Author</td>
+              <td id="default-row">Book Description</td>
+              <td id="default-row">Book Pages Amount</td>
+              <td id="default-row" style="width:5%"></td>
+              <td id="default-row" style="width:5%"></td>
+            </tr>
+          </thead>
+          <tbody id="books-table">
+            
+          </tbody>
+        </table>
+        <spam id="error-book"> </spam>
+        <a class="btn btn-default" id="link-create-book" role="button">Create Book</a>
+      </div>
+
+      <div id="authors" class="wrapper">
+        <span id="authors-counter"></span>
+        <table class="table table-hover" id="authors-table">
+          <tr>
+            <td id="default-row" style="width:75%">Author Name</td>
+            <td id="default-row"></td>
+            <td id="default-row"></td>
+          </tr>
+        </table>
+        <spam id="error-author"></spam>
+        <a class="btn btn-default" id="link-create-author" role="button">Create Author</a>
+      </div>
+      
+      <div id="create-book" class="wrapper">
+        <h1>Formulario Alta Libro</h1>
+        <div id="crearLibro">
+          <form id="form-book">
+            <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
+            <div id="the-basics">
+              <input id="author" class="form-control typeahead" type="text" placeholder="Authors" required>
+            </div>
+            <textarea class="editor"></textarea>
+            <!--<textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripcion..."></textarea>-->
+            <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
+            <button type="submit" id="button-submit" class="btn btn-primary">Agregar Libro</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="create-author" class="wrapper">
+        <h1>Formulario Alta Autor</h1>
+        <div id="crearAutor">
+          <form id="form-author">
+            <input id="nameAuthor" name="nameAuthor" type="text" class="form-control" placeholder="Nombre" required>
+            <button type="submit" id="button-submit-author" class="btn btn-primary">Agregar Autor</button>
+          </form>
+        </div>
+      </div>
+      <div id="index" class="wrapper text-center">
+        <h1 class="la">ABM LIBROS</h1>
+        <p class="lead">Agregar, modificar y quitar libros.</p>
+      </div>
+      <div class="info"></div>
+      <div id="delete-modal-book" class="modal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Advertencia</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
+              </div>
+          </div>
+
+        </div>
+      </div>
+      <div id="delete-modal-author" class="modal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Advertencia</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="js/fuctionDeletePut.js"></script>
@@ -136,4 +145,9 @@
     <script src="js/authors/authorsController.js"></script>
     <script src="bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="js/book/authorSelected.js"></script>
+    <script type="bower_components/wysihtml5/dist/wysihtml5-0.3.0.js"></script>
+    <script src="js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript">
+  $('#some-textarea').wysihtml5();
+</script>
 </body>
