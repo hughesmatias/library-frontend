@@ -31,6 +31,16 @@
 		});
 	}
 
+	module.getAllAuthors = function(callback){
+		authorsService.getAuthors(function(authors){
+		var authorsArray = [];
+			$.each(authors,function(index,author){
+				authorsArray.push(author.name);
+			})
+		callback(authorsArray);
+		})
+	}
+
 	module.getNameAuthorById = function(id,callback){
 		authorsService.getAuthor(id,function (json){
 			callback(json.name);

@@ -60,11 +60,10 @@
           <div id="crearLibro">
             <form id="form-book">
               <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
-              <input id="author" name="author" type="text" class="form-control" placeholder="Autor" required>
-              <!-- <div id="the-basics">
-                <input class="typeahead" type="text" placeholder="States of USA">
-              </div> -->
-              <label for="formGroupExampleInput">Descripcion</label>
+              <!--<input id="author" name="author" type="text" class="form-control" placeholder="Autor" required>-->
+              <div id="the-basics">
+                <input id="author" class="form-control typeahead" type="text" placeholder="Authors" required>
+              </div>
               <textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripcion..."></textarea>
               <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
               <button type="submit" id="button-submit" class="btn btn-primary">Agregar Libro</button>
@@ -135,6 +134,6 @@
     <script src="js/book/booksController.js"></script>
     <script src="js/authors/authorsService.js"></script>
     <script src="js/authors/authorsController.js"></script>
-    <!--<script src="js/book/the-basics.js"></script>-->
-    <script src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>
+    <script src="bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+    <script src="js/book/authorSelected.js"></script>
 </body>

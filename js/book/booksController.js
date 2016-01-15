@@ -62,7 +62,7 @@
 		$("#create-book").removeClass("hidden");
 		booksService.getBook(id,function (bookObj){
 			$("#title").val(bookObj.title);
-			$("#author").val(bookObj.authorId);
+			$("#author").val(bookObj.author);
 			$("#description").val(bookObj.description);
 			$("#pagesAmount").val(bookObj.pagesAmount);
 			$("#create-book h1").text("Formulario de Modificacion de Libro");
