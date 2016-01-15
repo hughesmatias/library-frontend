@@ -94,15 +94,15 @@
 				$("#error-book").text("No se dispone de Libros.");
 			}else{
 				$.each(books, function(index,book){
-					authors.getNameAuthorById(book.authorId,function(authorName){
-						table.append("<tr id='book-row-"+ book.id +"'><td>"+ book.title +"</td><td>"+ authorName +"</td><td>"+ book.description +"</td><td>"+ book.pagesAmount +"</td><td><a href='#' class='edit-book-" + book.id + "' data-id=" + book.id + ">Editar</a></td><td><a href='#' class='delete-book-" + book.id + "' data-id=" + book.id + ">Borrar</a> </td><tr>");
+					authors.getNameAuthorById(book.author,function(author){						
+						table.append("<tr id='book-row-"+ book.id +"'><td>"+ book.title +"</td><td>"+ author +"</td><td>"+ book.description +"</td><td>"+ book.pagesAmount +"</td><td><a href='#' class='edit-book-" + book.id + "' data-id=" + book.id + ">Editar</a></td><td><a href='#' class='delete-book-" + book.id + "' data-id=" + book.id + ">Borrar</a> </td><tr>");
 						$(".delete-book-" + book.id).on("click",function (){
 							module.delete(book.id);
 						});
 						$(".edit-book-" + book.id).on("click",function (){
 							module.edit(book.id);
 						});
-					});
+					})
 				});
 
 			}
