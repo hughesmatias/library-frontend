@@ -2,6 +2,7 @@ $(document).ready(function(){
 	abm.menu();
 	abm.index();
 
+
 	$("#link-list-books").on("click",function(){
 		books.showContainClean();
 		$("#books").removeClass("hidden");
@@ -10,9 +11,8 @@ $(document).ready(function(){
 	$("#link-create-book").on("click",function(){
 		books.showContainClean();
 		$("#create-book").removeClass("hidden");
+		$('#description').summernote();
 		books.cleanBookForm();
-		$('.editor').wysihtml5();
-		$('#some-textarea').wysihtml5();
 		books.create();
 	});
 	$("#link-list-authors").on("click",function(){

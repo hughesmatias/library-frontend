@@ -34,7 +34,7 @@
 		return bookObj = {
 			title: $("#title").val(),
 			author: $("#author").val(),
-			description: $("#description").val(),
+			description: $('#description').summernote('code'),
 		    pagesAmount: $("#pagesAmount").val(),
 		}
 	}
@@ -63,7 +63,7 @@
 		booksService.getBook(id,function (bookObj){
 			$("#title").val(bookObj.title);
 			$("#author").val(bookObj.author);
-			$("#description").val(bookObj.description);
+			$('#description').summernote('code',bookObj.description);
 			$("#pagesAmount").val(bookObj.pagesAmount);
 			$("#create-book h1").text("Formulario de Modificacion de Libro");
 			$("#create-book #button-submit").text("Editar Libro");

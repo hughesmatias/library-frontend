@@ -1,11 +1,13 @@
 <!DOCTYPE html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ABM</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/abm1.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="bower_components/summernote/dist/summernote.css" rel="stylesheet">
   </head>
 <body>
 
@@ -30,7 +32,7 @@
 
     <div class="starter-template hidden">
 
-      <div id="books" class="wrapper">
+      <div id="books" class="wrapper table-responsive">
         <span id="books-counter"></span>
         <table class="table table-striped">
           <thead>
@@ -51,7 +53,7 @@
         <a class="btn btn-default" id="link-create-book" role="button">Create Book</a>
       </div>
 
-      <div id="authors" class="wrapper">
+      <div id="authors" class="wrapper table-responsive">
         <span id="authors-counter"></span>
         <table class="table table-hover" id="authors-table">
           <tr>
@@ -69,11 +71,10 @@
         <div id="crearLibro">
           <form id="form-book">
             <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
-            <div id="the-basics">
+            <div id="author-typeahead">
               <input id="author" class="form-control typeahead" type="text" placeholder="Authors" required>
             </div>
-            <textarea class="editor"></textarea>
-            <!--<textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripcion..."></textarea>-->
+            <div id="description"><p></p></div>
             <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
             <button type="submit" id="button-submit" class="btn btn-primary">Agregar Libro</button>
           </form>
@@ -134,7 +135,7 @@
   </div>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="js/fuctionDeletePut.js"></script>
+    <script src="js/ajaxDeletePut.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="config.js"></script>
     <script src="js/abm.js"></script>
@@ -145,9 +146,7 @@
     <script src="js/authors/authorsController.js"></script>
     <script src="bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="js/book/authorSelected.js"></script>
-    <script type="bower_components/wysihtml5/dist/wysihtml5-0.3.0.js"></script>
-    <script src="js/bootstrap-wysihtml5.js"></script>
-<script type="text/javascript">
-  $('#some-textarea').wysihtml5();
-</script>
+    <script src="bower_components/summernote/dist/summernote.js"></script>
+
+
 </body>

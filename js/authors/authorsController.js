@@ -70,6 +70,7 @@
 		module.getNameAuthorById(id,function(data){
 			$("#nameAuthor").val(data);
 			$("#form-author").submit(function (event){
+				event.preventDefault();
 				var objAuthor = module.objAuthor();
 				authorsService.editAuthor(id,objAuthor,function(data){
 					module.showContainClean();

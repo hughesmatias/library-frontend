@@ -21,7 +21,7 @@ var substringMatcher = function(strs) {
 };
 
 authors.getAllAuthors(function(authorNames){
-  $('#the-basics .typeahead').typeahead({
+  $('#author-typeahead .typeahead').typeahead({
     hint: true,
     highlight: true,
     minLength: 1
