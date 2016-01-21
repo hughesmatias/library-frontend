@@ -2,6 +2,7 @@
 
 	module.objAuthor = function (){
 		return obj = {
+			id : $("#idAuthor").val(),
 			name : $("#nameAuthor").val()
 		}
 	} 
@@ -20,15 +21,12 @@
 	}
 
 	module.create = function(){
-		$("#form-author").submit(function (event){
-			event.preventDefault();
-			var objAuthor = module.objAuthor();
-			authorsService.createAuthor(objAuthor,function(data){
-				module.showContainClean();
-				module.showSuccessfulSubmit("Agregado");
-				module.cleanAuthorForm();
-			})
-		});
+		var objAuthor = module.objAuthor();
+		authorsService.createAuthor(objAuthor,function(data){
+			module.showContainClean();
+			module.showSuccessfulSubmit("Agregado");
+			module.cleanAuthorForm();
+		})
 	}
 
 	module.getAllAuthors = function(callback){
@@ -50,37 +48,41 @@
 	module.delete = function(id){
 		module.getNameAuthorById(id,function(data){
 			var deleteModal = $("#delete-modal-author");
+			$("#delete-modal-author #idAuthor").val(id);
 			deleteModal.modal('show');
 			deleteModal.find(".modal-body p").text("Si elimina el autor:"+ data +" se borraran todos los libros que tenga vinculados");
-			deleteModal.find("#delete-book-botom").on("click",function(){
-				authorsService.deleteAuthors(id,function(data){
-					deleteModal.modal("hide");
-					module.list();
-				})
-			})
-
 		})
+	};
+
+	module.deleteButtonHandler = function(){
+		var id = $("#delete-modal-author #idAuthor").val();
+		authorsService.deleteAuthors(id,function(data){
+			$("#delete-modal-author").modal("hide");
+			module.showListAuthors();
+		});
 	}
 
-	module.edit = function(id){
+	module.edit = function(id) {
 		module.showContainClean();
 		$("#create-author").removeClass("hidden");
 		$("#create-author h1").text("Forumario de Edicion de Autor");
-		$("#create-author #button-submit-author").text("Editar Autor");
-		module.getNameAuthorById(id,function(data){
+		$("#create-author #button-submit-author").addClass("hidden");
+        $("#create-author #button-edit-author").removeClass("hidden");
+		module.getNameAuthorById(id, function(data){
 			$("#nameAuthor").val(data);
-			$("#form-author").submit(function (event){
-				event.preventDefault();
-				var objAuthor = module.objAuthor();
-				authorsService.editAuthor(id,objAuthor,function(data){
-					module.showContainClean();
-					module.showSuccessfulSubmit("Editado");
-				})
-			})
-		})
-	}
+			$("#idAuthor").val(id);
+		});
+	};
+ 
+	module.editButtonHandler = function () {
+		var objAuthor = module.objAuthor();
+		authorsService.editAuthor(objAuthor, function(data) {
+			module.showContainClean();
+			module.showSuccessfulSubmit('Editado');
+		});
+	};
 
-	module.list = function(){
+	module.showListAuthors = function(){
 		authorsService.getAuthors(function(authors){
 
 			$("#error-author").empty();

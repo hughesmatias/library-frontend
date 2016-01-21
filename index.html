@@ -70,13 +70,15 @@
         <h1>Formulario Alta Libro</h1>
         <div id="crearLibro">
           <form id="form-book">
+            <input id="idBook" type="hidden">
             <input id="title" name="title" type="text" class="form-control" placeholder="Titulo" required>
             <div id="author-typeahead">
               <input id="author" class="form-control typeahead" type="text" placeholder="Authors" required>
             </div>
             <div id="description"><p></p></div>
             <input id="pagesAmount" name="pagesAmount" type="text" class="form-control" placeholder="Cantidad de Paginas" required>
-            <button type="submit" id="button-submit" class="btn btn-primary">Agregar Libro</button>
+            <button id="button-submit" class="btn btn-primary">Agregar Libro</button>
+            <button id="button-edit" class="btn btn-primary hidden">Editar Libro</button>
           </form>
         </div>
       </div>
@@ -85,8 +87,10 @@
         <h1>Formulario Alta Autor</h1>
         <div id="crearAutor">
           <form id="form-author">
+            <input id="idAuthor" type="hidden">
             <input id="nameAuthor" name="nameAuthor" type="text" class="form-control" placeholder="Nombre" required>
-            <button type="submit" id="button-submit-author" class="btn btn-primary">Agregar Autor</button>
+            <button id="button-submit-author" class="btn btn-primary">Agregar Autor</button>
+            <button id="button-edit-author" class="btn btn-primary hidden">Editar Autor</button>
           </form>
         </div>
       </div>
@@ -103,12 +107,13 @@
               <h4 class="modal-title">Advertencia</h4>
             </div>
             <div class="modal-body">
+              <input id="idBook" type="hidden">
               <p></p>
             </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
-              </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
+            </div>
           </div>
 
         </div>
@@ -121,11 +126,12 @@
               <h4 class="modal-title">Advertencia</h4>
             </div>
             <div class="modal-body">
+              <input id="idAuthor" type="hidden">
               <p></p>
             </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <a class="btn btn-danger btn-ok" id="delete-book-botom">Eliminar</a>
+                  <a class="btn btn-danger btn-ok" id="delete-author-botom">Eliminar</a>
               </div>
           </div>
         </div>
@@ -147,6 +153,4 @@
     <script src="bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="js/book/authorSelected.js"></script>
     <script src="bower_components/summernote/dist/summernote.js"></script>
-
-
 </body>

@@ -28,8 +28,8 @@ var bookService = (function () {
       createBook: function(bookObj,callback){
         $.post(url+"/books",bookObj,callback);
       },
-      editBook: function(id,bookObj,callback){
-        $.put(url + "/books/" + id, bookObj , callback)
+      editBook: function(bookObj,callback){
+        $.put(url + "/books/" + bookObj.idBook, bookObj , callback)
       },
       deleteBook: function(id,callback){
         $.delete(url + "/books/" + id, callback);

@@ -3,7 +3,6 @@ var authorService = (function(){
 	var instance;
 
 	function init(){
-		//here private function
 	
 		return {
 
@@ -20,8 +19,8 @@ var authorService = (function(){
 			createAuthor : function (obj,callback){
 				$.post( url + "/authors",obj,callback);
 			},
-			editAuthor : function (id,obj,callback){
-				$.put (url+ "/authors/"+ id,obj,callback);
+			editAuthor : function (obj, callback){
+				$.put (url+ "/authors/"+ obj.id,obj, callback);
 			},
 			deleteAuthors : function(id,callback){
 				$.delete (url + "/authors/"+id, callback);
